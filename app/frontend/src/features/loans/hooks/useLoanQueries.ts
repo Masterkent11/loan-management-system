@@ -20,13 +20,14 @@ export function useAllLoansQuery() {
   });
 }
 
-export function useCreateLoanMutation() {
+export function useCreateLoanMutation(options?: { onSuccess?: () => void }) {
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: loanApi.createLoan,
     onSuccess: () => {
       void queryClient.invalidateQueries({ queryKey: loanQueryKeys.myLoans });
+      options?.onSuccess?.();
     },
   });
 }
