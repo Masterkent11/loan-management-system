@@ -11,16 +11,12 @@ export function summarizeLoans(loans: Loan[]) {
       approvedApplications:
         summary.approvedApplications + (loan.status === "APPROVED" ? 1 : 0),
       totalRequested: summary.totalRequested + toNumber(loan.amount),
-      totalBorrowed:
-        summary.totalBorrowed +
-        (loan.status === "APPROVED" ? toNumber(loan.amount) : 0),
     }),
     {
       totalApplications: 0,
       pendingApplications: 0,
       approvedApplications: 0,
       totalRequested: 0,
-      totalBorrowed: 0,
     },
   );
 }

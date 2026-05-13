@@ -1,8 +1,6 @@
 import type { Loan } from "@loan-management/shared";
 import { Badge } from "../../../components/ui/Badge";
 import { Button } from "../../../components/ui/Button";
-import { formatPhilippinePeso } from "../../../utils/currency";
-import { formatDisplayDate } from "../../../utils/date";
 
 type LoanTableProps = {
   loans: Loan[];
@@ -10,6 +8,8 @@ type LoanTableProps = {
   onApprove?: (loanId: string) => void;
   onReject?: (loanId: string) => void;
 };
+
+const money = (value: number | string) => `$${Number(value).toLocaleString()}`;
 
 export function LoanTable({
   isAdmin = false,
@@ -22,29 +22,23 @@ export function LoanTable({
       <table>
         <thead>
           <tr>
-            <th>ID</th>
             {isAdmin ? <th>Applicant</th> : null}
-            <th>Date</th>
             <th>Amount</th>
             <th>Term</th>
-            <th>Rate</th>
             <th>Monthly</th>
-            <th>Repayment</th>
+            <th>Total</th>
             <th>Status</th>
             {isAdmin ? <th>Actions</th> : null}
           </tr>
         </thead>
         <tbody>
-          {loans.map((loan, index) => (
+          {loans.map((loan) => (
             <tr key={loan.id}>
-              <td>{index + 1}</td>
               {isAdmin ? <td>{loan.user?.name ?? "Unknown"}</td> : null}
-              <td>{formatDisplayDate(loan.createdAt)}</td>
-              <td>{formatPhilippinePeso(loan.amount)}</td>
-              <td>{loan.termMonths} Months</td>
-              <td>{(Number(loan.interestRate) * 100).toFixed(0)}%</td>
-              <td>{formatPhilippinePeso(loan.monthlyPayment)}</td>
-              <td>{formatPhilippinePeso(loan.totalRepayment)}</td>
+              <td>{money(loan.amount)}</td>
+              <td>{loan.termMonths} months</td>
+              <td>{money(loan.monthlyPayment)}</td>
+              <td>{money(loan.totalRepayment)}</td>
               <td>
                 <Badge status={loan.status} />
               </td>

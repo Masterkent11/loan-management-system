@@ -3,7 +3,7 @@ import type { ButtonHTMLAttributes, PropsWithChildren } from "react";
 type ButtonProps = PropsWithChildren<
   ButtonHTMLAttributes<HTMLButtonElement>
 > & {
-  variant?: "primary" | "secondary" | "danger" | "ghost";
+  variant?: "primary" | "secondary" | "danger";
 };
 
 export function Button({
