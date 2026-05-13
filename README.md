@@ -1,0 +1,55 @@
+# Loan Management System
+
+Full-stack loan management system scaffolded for the senior developer coding exam.
+
+## Stack
+
+- Frontend: React, TypeScript, Vite, React Router, React Query, Zustand, React Hook Form, Zod
+- Backend: Node.js, TypeScript, Express, Prisma, PostgreSQL, JWT, bcrypt
+- Shared package: centralized constants, types, and loan repayment calculator
+- DevOps: Docker Compose, Dockerfiles, GitHub Actions quality gates
+
+## Structure
+
+```text
+app/
+  backend/
+    src/
+      config/ controllers/ database/ middlewares/ routes/ services/
+      validators/ utils/ constants/ types/
+  frontend/
+    src/
+      components/ constants/ features/ hooks/ lib/ routes/ services/
+      store/ styles/ types/ utils/
+packages/
+  shared/
+    src/
+      constants/ types/ utils/
+```
+
+## Local Setup
+
+```bash
+npm install
+docker compose up -d
+npm --workspace app/backend run prisma:migrate
+npm --workspace app/backend run prisma:seed
+npm run dev:backend
+npm run dev:frontend
+```
+
+Default seeded admin:
+
+- Email: `admin@loan.test`
+- Password: `Admin123!`
+
+## API Overview
+
+- `POST /api/auth/register`
+- `POST /api/auth/login`
+- `GET /api/auth/me`
+- `POST /api/loans`
+- `GET /api/loans/my-loans`
+- `GET /api/loans/admin/all`
+- `PATCH /api/loans/admin/:loanId/approve`
+- `PATCH /api/loans/admin/:loanId/reject`

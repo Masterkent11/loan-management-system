@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: loan_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: loan_user
+      POSTGRES_PASSWORD: loan_password
+      POSTGRES_DB: loan_management
+    ports:
+      - "5432:5432"
+    volumes:
+      - loan_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  loan_postgres_data:
