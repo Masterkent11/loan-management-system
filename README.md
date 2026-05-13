@@ -43,6 +43,13 @@ Default seeded admin:
 - Email: `admin@loan.test`
 - Password: `Admin123!`
 
+Admin dashboard URL:
+
+- Local: `http://localhost:5173/admin/dashboard`
+- Login page: `http://localhost:5173/login`
+
+More details: [Admin Local Access](docs/development/admin-access.md)
+
 ## API Overview
 
 - `POST /api/auth/register`
