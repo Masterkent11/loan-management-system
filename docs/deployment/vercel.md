@@ -19,6 +19,14 @@ CLIENT_ORIGIN=https://your-vercel-domain.vercel.app
 
 `VITE_API_BASE_URL` is optional. In production, the frontend defaults to `/api`.
 
+For Vercel, `DATABASE_URL` must be the hosted PostgreSQL URL from Neon, Prisma Postgres, Supabase, or another provider. Do not use:
+
+```text
+postgresql://loan_user:loan_password@localhost:5432/loan_management
+```
+
+`localhost` only works on your computer. Vercel cannot reach your local Docker database.
+
 ## Database Setup
 
 Use a hosted PostgreSQL database. Good options:
@@ -54,10 +62,11 @@ The root `vercel.json` already defines these runtime routes:
 
 ## Deploy Flow
 
-1. Push the deployment branch to GitHub.
+1. Push the deployment code to `main`.
 2. Import the repository into Vercel.
-3. Add the environment variables.
-4. Deploy.
+3. Set Vercel's production branch to `main`.
+4. Add the environment variables for Production, Preview, and Development, or choose all environments.
+5. Deploy.
 
 During build, Vercel runs:
 
