@@ -11,7 +11,8 @@
     "build": "npm run build --workspaces --if-present",
     "lint": "npm run lint --workspaces --if-present",
     "format": "npm run format --workspaces --if-present",
-    "test": "npm run test --workspaces --if-present"
+    "test": "npm run test --workspaces --if-present",
+    "vercel-build": "npm --workspace app/backend run prisma:generate && npm --workspace app/backend run prisma:deploy && npm --workspace app/frontend run build"
   },
   "devDependencies": {
     "typescript": "^5.6.3"
