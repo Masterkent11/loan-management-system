@@ -1,6 +1,7 @@
 import { EmptyState } from "../../../components/common/EmptyState";
 import { LoadingState } from "../../../components/common/LoadingState";
 import { AppShell } from "../../../components/layout/AppShell";
+import { formatPhilippinePeso } from "../../../utils/currency";
 import { LoanTable } from "../../loans/components/LoanTable";
 import {
   useAllLoansQuery,
@@ -17,23 +18,27 @@ export function AdminDashboardPage() {
   const summary = summarizeLoans(loans);
 
   return (
-    <AppShell title="Admin Dashboard">
+    <AppShell title="Dashboard">
       <section className="summary-grid">
         <article>
-          <span>Total applications</span>
+          <span>Total Applications</span>
           <strong>{summary.totalApplications}</strong>
         </article>
         <article>
-          <span>Pending review</span>
+          <span>Pending Review</span>
           <strong>{summary.pendingApplications}</strong>
         </article>
         <article>
-          <span>Approved</span>
+          <span>Total Borrowed</span>
+          <strong>{formatPhilippinePeso(summary.totalBorrowed)}</strong>
+        </article>
+        <article>
+          <span>Approved Loans</span>
           <strong>{summary.approvedApplications}</strong>
         </article>
       </section>
-      <section className="panel">
-        <h2>Loan queue</h2>
+      <section className="dashboard-section">
+        <h2>Loans</h2>
         {loansQuery.isLoading ? <LoadingState /> : null}
         {!loansQuery.isLoading && loans.length === 0 ? (
           <EmptyState
