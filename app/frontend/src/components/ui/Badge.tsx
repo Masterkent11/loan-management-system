@@ -4,8 +4,16 @@ type BadgeProps = {
   status: LoanStatus;
 };
 
+const statusLabel: Record<LoanStatus, string> = {
+  APPROVED: "Approved",
+  PENDING: "Pending",
+  REJECTED: "Rejected",
+};
+
 export function Badge({ status }: BadgeProps) {
   return (
-    <span className={`badge badge-${status.toLowerCase()}`}>{status}</span>
+    <span className={`badge badge-${status.toLowerCase()}`}>
+      {statusLabel[status]}
+    </span>
   );
 }
