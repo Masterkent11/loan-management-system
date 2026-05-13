@@ -1,6 +1,6 @@
 :root {
-  color: #18212f;
-  background: #f4f7fb;
+  color: #111827;
+  background: #ffffff;
   font-family:
     Inter,
     ui-sans-serif,
@@ -21,6 +21,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  background: #ffffff;
 }
 
 a {
@@ -76,19 +77,26 @@ select {
 
 .field {
   display: grid;
-  gap: 6px;
-  color: #334155;
+  gap: 7px;
+  color: #1f2937;
+  font-size: 14px;
   font-weight: 700;
 }
 
 .field input,
 .field select {
   width: 100%;
-  border: 1px solid #cbd5e1;
+  border: 1px solid #cfd6df;
   border-radius: 6px;
-  padding: 11px 12px;
-  color: #18212f;
+  padding: 10px 12px;
+  color: #111827;
   background: #ffffff;
+}
+
+.field input:focus,
+.field select:focus {
+  border-color: #1f8fff;
+  outline: 1px solid #1f8fff;
 }
 
 .field small,
@@ -97,12 +105,13 @@ select {
 }
 
 .button {
-  min-height: 42px;
+  min-height: 36px;
   border: 0;
   border-radius: 6px;
-  padding: 10px 14px;
+  padding: 9px 16px;
   cursor: pointer;
-  font-weight: 800;
+  font-size: 14px;
+  font-weight: 700;
 }
 
 .button:disabled {
@@ -112,12 +121,13 @@ select {
 
 .button-primary {
   color: #ffffff;
-  background: #0d5ca6;
+  background: #1f8fff;
 }
 
 .button-secondary {
-  color: #0d5ca6;
-  background: #e8f1fb;
+  border: 1px solid #d5dbe3;
+  color: #111827;
+  background: #ffffff;
 }
 
 .button-danger {
@@ -125,10 +135,17 @@ select {
   background: #b42318;
 }
 
+.button-ghost {
+  min-width: auto;
+  border: 0;
+  color: #4b5563;
+  background: transparent;
+}
+
 .app-shell {
-  width: min(1180px, 100%);
+  width: min(1000px, calc(100% - 48px));
   margin: 0 auto;
-  padding: 24px;
+  padding: 64px 0;
 }
 
 .topbar {
@@ -136,64 +153,124 @@ select {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  margin-bottom: 24px;
+  margin-bottom: 32px;
+}
+
+.topbar h1 {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .summary-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-  margin-bottom: 18px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 30px;
+  max-width: 590px;
 }
 
 .summary-grid article {
-  border: 1px solid #d9e2ef;
+  min-height: 90px;
+  border: 1px solid #d8dee7;
   border-radius: 8px;
   background: #ffffff;
-  padding: 18px;
+  padding: 20px 22px;
+  box-shadow: 0 16px 22px rgba(17, 24, 39, 0.08);
 }
 
 .summary-grid span {
   display: block;
-  color: #607085;
+  color: #111827;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .summary-grid strong {
   display: block;
-  margin-top: 8px;
-  font-size: 28px;
+  margin-top: 14px;
+  color: #050505;
+  font-size: 26px;
+  font-weight: 800;
 }
 
-.content-grid {
-  display: grid;
-  grid-template-columns: 360px minmax(0, 1fr);
-  gap: 18px;
+.dashboard-section h2 {
+  margin: 0 0 6px;
+  color: #111827;
+  font-size: 17px;
+  font-weight: 800;
 }
 
 .repayment-grid {
   display: grid;
-  gap: 6px;
-  border-radius: 8px;
-  background: #f1f6fc;
-  padding: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.repayment-grid label {
+  display: grid;
+  gap: 7px;
+  color: #1f2937;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.repayment-grid output {
+  min-height: 36px;
+  border-radius: 4px;
+  background: #eef0f5;
+  padding: 10px 12px;
+  color: #111827;
+  font-weight: 500;
+}
+
+.loan-form {
+  display: grid;
+  gap: 16px;
 }
 
 .table-wrap {
   width: 100%;
   overflow-x: auto;
+  border: 1px solid #d8dee7;
+  border-radius: 7px;
+  background: #ffffff;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
+  font-size: 14px;
 }
 
 th,
 td {
-  border-bottom: 1px solid #e2e8f0;
-  padding: 12px;
+  border-right: 1px solid #d8dee7;
+  border-bottom: 1px solid #d8dee7;
+  padding: 13px 12px;
   text-align: left;
   white-space: nowrap;
+}
+
+th:last-child,
+td:last-child {
+  border-right: 0;
+}
+
+tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+th {
+  color: #6b7280;
+  font-size: 14px;
+  font-weight: 800;
 }
 
 .actions {
@@ -202,27 +279,27 @@ td {
 }
 
 .badge {
-  display: inline-flex;
+  display: inline;
   align-items: center;
-  border-radius: 999px;
-  padding: 4px 10px;
-  font-size: 12px;
-  font-weight: 800;
+  border-radius: 0;
+  padding: 0;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .badge-pending {
-  color: #92400e;
-  background: #fef3c7;
+  color: #111827;
+  background: transparent;
 }
 
 .badge-approved {
-  color: #166534;
-  background: #dcfce7;
+  color: #111827;
+  background: transparent;
 }
 
 .badge-rejected {
-  color: #991b1b;
-  background: #fee2e2;
+  color: #111827;
+  background: transparent;
 }
 
 .empty-state,
@@ -235,14 +312,83 @@ td {
   color: #607085;
 }
 
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.58);
+}
+
+.modal {
+  width: min(430px, 100%);
+  border-radius: 4px;
+  background: #ffffff;
+  padding: 18px 16px 16px;
+  box-shadow: 0 24px 40px rgba(0, 0, 0, 0.22);
+}
+
+.modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.modal-header h2 {
+  margin: 0;
+  color: #111827;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.modal-header p {
+  margin: 18px 0 0;
+  color: #8b95a1;
+  font-size: 13px;
+}
+
+.icon-button {
+  padding: 0;
+  min-height: auto;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 8px;
+}
+
 @media (max-width: 860px) {
-  .content-grid,
   .summary-grid {
     grid-template-columns: 1fr;
+    max-width: none;
   }
 
   .topbar {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .topbar-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 520px) {
+  .app-shell {
+    width: min(100% - 28px, 1000px);
+    padding: 32px 0;
+  }
+
+  .repayment-grid {
+    grid-template-columns: 1fr;
   }
 }
