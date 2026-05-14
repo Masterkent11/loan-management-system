@@ -50,6 +50,15 @@ Admin dashboard URL:
 
 More details: [Admin Local Access](docs/development/admin-access.md)
 
+## Deployment Notes
+
+Deploy Vercel from the `main` branch. For Neon, set both database variables in Vercel:
+
+- `DATABASE_URL`: pooled Neon connection string for API runtime
+- `DIRECT_URL`: direct Neon connection string for Prisma migrations
+
+Keep `sslmode=require` in both URLs, and remove `channel_binding=require` from the Vercel values if Neon adds it. More details: [Vercel Deployment](docs/deployment/vercel.md)
+
 ## API Overview
 
 - `POST /api/auth/register`
