@@ -1,5 +1,6 @@
 import axios from "axios";
 import { env } from "../lib/env";
+import { clearUserScopedCache } from "../lib/query-client";
 import { useAuthStore } from "../store/auth.store";
 
 export const httpClient = axios.create({
@@ -24,6 +25,7 @@ httpClient.interceptors.response.use(
   (error) => {
     if (error.response?.status === 401) {
       useAuthStore.getState().clearSession();
+      clearUserScopedCache();
     }
 
     return Promise.reject(error);
