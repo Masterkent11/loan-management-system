@@ -7,6 +7,7 @@ import {
   errorHandler,
   notFoundHandler,
 } from "./middlewares/error.middleware.js";
+import { requireRuntimeConfig } from "./middlewares/runtime-config.middleware.js";
 import { apiRoutes } from "./routes/index.js";
 
 export const createApp = () => {
@@ -21,6 +22,7 @@ export const createApp = () => {
     res.json({ status: "ok" });
   });
 
+  app.use("/api", requireRuntimeConfig);
   app.use("/api", apiRoutes);
   app.use(notFoundHandler);
   app.use(errorHandler);
