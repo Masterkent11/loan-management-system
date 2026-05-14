@@ -1,6 +1,6 @@
 import type { PropsWithChildren, ReactNode } from "react";
 import { Button } from "../ui/Button";
-import { useAuthStore } from "../../store/auth.store";
+import { useSignOut } from "../../features/auth/hooks/useSignOut";
 
 type AppShellProps = PropsWithChildren<{
   actions?: ReactNode;
@@ -8,7 +8,7 @@ type AppShellProps = PropsWithChildren<{
 }>;
 
 export function AppShell({ actions, children, title }: AppShellProps) {
-  const { clearSession, user } = useAuthStore();
+  const signOut = useSignOut();
 
   return (
     <main className="app-shell">
@@ -18,7 +18,7 @@ export function AppShell({ actions, children, title }: AppShellProps) {
         </div>
         <div className="topbar-actions">
           {actions}
-          <Button type="button" variant="secondary" onClick={clearSession}>
+          <Button type="button" variant="secondary" onClick={signOut}>
             Sign out
           </Button>
         </div>
