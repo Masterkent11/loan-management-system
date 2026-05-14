@@ -1,6 +1,10 @@
 import type { NextFunction, Request, Response } from "express";
 import { ZodError } from "zod";
 import { HttpError } from "../utils/http-error.js";
+import {
+  getPrismaErrorDetails,
+  isDatabaseSetupError,
+} from "../utils/prisma-error.util.js";
 
 export const notFoundHandler = (
   req: Request,
@@ -26,6 +30,16 @@ export const errorHandler = (
 
   if (error instanceof HttpError) {
     res.status(error.statusCode).json({ message: error.message });
+    return;
+  }
+
+  console.error("Unhandled API error", getPrismaErrorDetails(error));
+
+  if (isDatabaseSetupError(error)) {
+    res.status(503).json({
+      message:
+        "Database is not ready. Verify Neon environment variables and run Prisma migrations.",
+    });
     return;
   }
 
